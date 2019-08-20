@@ -2,26 +2,26 @@ package kr.co.fastcampus.cli;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 @Slf4j
 public class Dao {
-/*
-    public static Dao createDao() {
-        return new Dao();
-    }
-*/
-    public void run() {
-        try {
-            Class.forName("org.h2.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        var url = "jdbc:h2:mem:test;MODE=MySQL;";
+    private Connection connection;
 
-        try(var connection = DriverManager.getConnection(url,"sa","");
-            var statement = connection.createStatement()) {
+    public Dao(Connection connection) {
+        this.connection = connection;
+    }
+
+    /*
+        public static Dao createDao() {
+            return new Dao();
+        }
+    */
+    public void run() throws SQLException {
+
+            var statement = connection.createStatement();
 
             connection.setAutoCommit(false);
 
@@ -38,8 +38,5 @@ public class Dao {
                 System.out.println(member.getUsername());
                 log.info(member.toString());
             }
-        } catch (SQLException e) {
-
-        }
     }
 }
