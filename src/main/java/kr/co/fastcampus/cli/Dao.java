@@ -7,6 +7,11 @@ import java.sql.SQLException;
 
 @Slf4j
 public class Dao {
+/*
+    public static Dao createDao() {
+        return new Dao();
+    }
+*/
     public void run() {
         try {
             Class.forName("org.h2.Driver");

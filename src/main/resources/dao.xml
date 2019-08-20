@@ -4,5 +4,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="kr.co.fastcampus.cli.Dao" />
+    <!-- 3. -->
+    <bean id="daoFactory" class="kr.co.fastcampus.cli.DaoFactory" />
+    <bean id="dao" class="kr.co.fastcampus.cli.Dao"
+          factory-bean="daoFactory"
+          factory-method="createDao" />
+
+
+    <!--
+    2.<bean id="dao" name= "dao1, dao2, dao3" class="kr.co.fastcampus.cli.Dao" factory-method="createDao" />
+    -->
 </beans>
